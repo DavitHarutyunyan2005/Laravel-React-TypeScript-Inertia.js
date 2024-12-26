@@ -1,32 +1,43 @@
 import FeatureItem from '@/Components/FeatureItem';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Feature, PaginatedData } from '@/types';
-import { Head, Link } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 
-export default function Index({ features }: { features: PaginatedData<Feature> }) {
+export default function Show({ feature }: { feature: Feature }) {
 
     return (
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Features
+                    Feature <b>{feature.name}</b>
                 </ h2>
             }
-
         >
-            <Head title="Features" />
+            <Head title={'Feature ' + feature.name} />
 
-            <div className='mb-8'>
-                <Link href={route('feature.create')} className="inline-flex items-center rounded-md border border-transparent bg-gray-800 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:bg-gray-900 dark:bg-gray-200 dark:text-gray-800 dark:hover:bg-white dark:focus:bg-white dark:focus:ring-offset-gray-800 dark:active:bg-gray-300 ">
-                    Create New Feature
-                </Link>
+            <div className="mb-4 overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
+            <div className="p-6 text-gray-900 dark:text-gray-100 flex gap-8">
+                <div className="flex flex-col items-center">
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-12">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                        </svg>
+                    </button>
+                    <span className="text-2xl font-semibold">12</span>
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-12">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                        </svg>
+
+                    </button>
+                </div>
+                <div className="flex-1">
+                    <h2 className="text-2xl mb-2">{feature.name}</h2>
+                    <p>{feature.description}</p>
+                </div>
             </div>
-            {features.data.map(feature => (
-                <FeatureItem feature={feature} key={feature.id} />
-            ))}
-
-
-        </AuthenticatedLayout>
+        </div>
+    </AuthenticatedLayout>
     );
 }
 
@@ -87,7 +98,7 @@ Aramayis: 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24
 
 Samuel: 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41
 
-Ruben: 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25... minchev amsi 25y - 43
+Ruben: 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25
 
 
 */
