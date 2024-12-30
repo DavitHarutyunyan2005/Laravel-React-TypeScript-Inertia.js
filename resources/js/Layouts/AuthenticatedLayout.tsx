@@ -3,16 +3,32 @@ import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
-import { PropsWithChildren, ReactNode, useState } from 'react';
+import { PropsWithChildren, ReactNode, useEffect, useState } from 'react';
 
 export default function Authenticated({
     header,
     children,
 }: PropsWithChildren<{ header?: ReactNode }>) {
+
     const user = usePage().props.auth.user;
+    const success: any = usePage().props.success;
+
+    
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
+
+    const [showSuccessMessage, setShowSuccessMessage] = useState(true);
+
+    useEffect(()=> {
+        if(success) {
+            const timer = setTimeout(() => {
+                setShowSuccessMessage(false);
+            }, 6000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [success]);
 
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -188,6 +204,11 @@ export default function Authenticated({
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    
+                    {success && showSuccessMessage && <div className="bg-emerald-600 py-4 px-6 rounded mb-8 w-1/2">
+                        {success}
+                    </div>}
+                    
                     <main>{children}</main>
                 </div>
             </div>
