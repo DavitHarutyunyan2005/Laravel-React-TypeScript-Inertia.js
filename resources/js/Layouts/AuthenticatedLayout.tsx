@@ -13,15 +13,21 @@ export default function Authenticated({
     const user = usePage().props.auth.user;
     const success: any = usePage().props.success;
 
-    
-
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
     const [showSuccessMessage, setShowSuccessMessage] = useState(true);
 
     useEffect(()=> {
-        if(success) {
+        
+        if(showSuccessMessage) {
+            const timer = setTimeout(() => {
+                setShowSuccessMessage(false);
+            }, 6000);
+
+            return () => clearTimeout(timer);
+        } else {
+            setShowSuccessMessage(true);
             const timer = setTimeout(() => {
                 setShowSuccessMessage(false);
             }, 6000);
@@ -205,7 +211,7 @@ export default function Authenticated({
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     
-                    {success && showSuccessMessage && <div className="bg-emerald-600 py-4 px-6 rounded mb-8 w-1/2">
+                    {success && showSuccessMessage  && <div className="bg-emerald-600 py-4 px-6 rounded mb-8 w-1/2">
                         {success}
                     </div>}
                     
