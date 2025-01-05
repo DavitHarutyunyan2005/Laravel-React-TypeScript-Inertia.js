@@ -30,8 +30,7 @@ export type Feature = {
     upvote_count: number;
     user_has_upvoted: boolean;
     user_has_downvoted: boolean;
-    comments: Comment[]
-
+    hasComment: boolean
 
 }
 
