@@ -2,6 +2,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
+import { can, hasRole } from '@/helpers';
 import { Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren, ReactNode, useEffect, useState } from 'react';
 
@@ -10,7 +11,7 @@ export default function Authenticated({
     children,
 }: PropsWithChildren<{ header?: ReactNode }>) {
 
-    
+
     const user = usePage().props.auth.user;
     const success: any = usePage().props.success;
 
@@ -20,9 +21,9 @@ export default function Authenticated({
 
     const [showSuccessMessage, setShowSuccessMessage] = useState(true);
 
-    useEffect(()=> {
-        
-        if(showSuccessMessage) {
+    useEffect(() => {
+
+        if (showSuccessMessage) {
             const timer = setTimeout(() => {
                 setShowSuccessMessage(false);
             }, 6000);
@@ -63,6 +64,13 @@ export default function Authenticated({
                                 >
                                     Features
                                 </NavLink>
+                                {can(user, 'manage_users') &&
+                                    <NavLink
+                                        href={route('user.index')}
+                                        active={route().current('user.index')}
+                                    >
+                                        Users
+                                    </NavLink>}
                             </div>
                         </div>
 
@@ -167,12 +175,12 @@ export default function Authenticated({
                         >
                             Dashboard
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink
-                            href={route('feature.index')}
-                            active={route().current('feature.index')}
+                        {can(user, 'manage_users') && <ResponsiveNavLink
+                            href={route('user.index')}
+                            active={route().current('user.index')}
                         >
-                            Features
-                        </ResponsiveNavLink>
+                            Users
+                        </ResponsiveNavLink>}
                     </div>
 
                     <div className="border-t border-gray-200 pb-1 pt-4 dark:border-gray-600">
@@ -212,11 +220,11 @@ export default function Authenticated({
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    
-                    {success && showSuccessMessage  && <div className="bg-emerald-600 py-4 px-6 rounded mb-8 w-1/2">
+
+                    {success && showSuccessMessage && <div className="bg-emerald-600 py-4 px-6 rounded mb-8 w-1/2">
                         {success}
                     </div>}
-                    
+
                     <main>{children}</main>
                 </div>
             </div>
