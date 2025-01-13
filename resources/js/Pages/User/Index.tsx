@@ -1,9 +1,10 @@
 import { can } from '@/helpers';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { User, PageProps, PaginatedData } from '@/types';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePoll } from '@inertiajs/react';
 
 export default function Index({ auth, users }: PageProps<{ users: User[] }>) {
+
 
     return (
         <AuthenticatedLayout

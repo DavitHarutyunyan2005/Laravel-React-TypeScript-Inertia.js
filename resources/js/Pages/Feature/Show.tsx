@@ -1,13 +1,12 @@
 import CommentItem from '@/Components/CommentItem';
-import FeatureItem from '@/Components/FeatureItem';
 import FeatureUpvoteDownvote from '@/Components/FeatureUpvoteDownvote';
 import NewCommentForm from '@/Components/NewCommentForm';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Feature, PaginatedData } from '@/types';
+import { Comment, Feature, PaginatedData } from '@/types';
 import { Head } from '@inertiajs/react';
 
 
-export default function Show({ feature }: { feature: Feature }) {
+export default function Show({ feature, comments }: { feature: Feature, comments: Comment[] }) {
 
     return (
         <AuthenticatedLayout
@@ -28,7 +27,7 @@ export default function Show({ feature }: { feature: Feature }) {
                     <p>{feature.description}</p>
                     <div className='mt-8'>
                         <NewCommentForm feature={feature}/>
-                        {feature.comments.map(comment => (
+                        {comments && comments.map(comment => (
                             <CommentItem comment={comment} key={comment.id}/>
                         ))}
                     </div>

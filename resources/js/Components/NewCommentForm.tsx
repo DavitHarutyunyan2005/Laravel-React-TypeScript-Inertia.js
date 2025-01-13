@@ -40,7 +40,7 @@ export default function NewCommentForm({ feature }: { feature: Feature }) {
                 rows={1}
                 value={data.comment}
                 onChange={e => setData('comment', e.target.value)}
-                className="mt-1 block w-full"
+                className="mt-1 block w-full mr-4"
                 placeholder="Your comment"
             >
             </TextAreaInput>

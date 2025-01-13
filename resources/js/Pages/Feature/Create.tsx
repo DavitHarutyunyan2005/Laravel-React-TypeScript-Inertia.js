@@ -1,4 +1,3 @@
-import FeatureItem from '@/Components/FeatureItem';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
@@ -63,6 +62,7 @@ export default function Create() {
 
                             <TextAreaInput
                                 id="description"
+                                rows={1}
                                 className="mt-1 block w-full"
                                 value={data.description}
                                 onChange={(e) => setData('description', e.target.value)}
