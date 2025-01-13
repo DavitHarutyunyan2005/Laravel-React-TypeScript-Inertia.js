@@ -74,7 +74,7 @@ export default function Authenticated({
                                         active={route().current('user.index')}
                                     >
                                         Users
-                                    </NavLink>}
+                                    </NavLink>} 
                             </div>
                         </div>
 
