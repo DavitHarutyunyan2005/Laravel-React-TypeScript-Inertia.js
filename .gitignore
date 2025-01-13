@@ -6,7 +6,8 @@
 /public/storage
 /storage/*.key
 /storage/pail
-/vendor
+/vendor/*
+!/vendor/tightenco
 .env
 .env.backup
 .env.production
